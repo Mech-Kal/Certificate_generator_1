@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Certificate Generator</title>
+
+<!-- External CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Required Libraries -->
+<script src="https://unpkg.com/pizzip@3.1.5/dist/pizzip.js"></script>
+<script src="https://unpkg.com/docxtemplater@3.21.1/build/docxtemplater.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+
+    <!-- How to Use Button outside container -->
+<div class="top-right">
+    <button class="info-btn" onclick="openModal()">How to Use?</button>
+</div>
+
+<!-- Page Heading -->
+<header>
+    <h1>📜 DOCX Certificate Generator</h1>
+</header>
+
+
+<!-- Main Container -->
+<div class="container">
+    <label>Upload DOCX Template (with {{name}} and {{rank}})</label><br>
+    <input type="file" id="template" accept=".docx"><br><br>
+
+    <label>Upload Excel File (must contain name and rank columns)</label><br>
+    <input type="file" id="excel" accept=".xlsx"><br><br>
+
+    <button onclick="generateCertificates()">Generate Certificates</button>
+
+    <pre id="log"></pre>
+</div>
+
+<!-- HOW TO USE MODAL -->
+<div id="howToUseModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2>How to Use Certificate Generator</h2>
+        <h3>✔ Step-by-Step</h3>
+        <p>1️⃣ Create a Word file (DOCX) and place placeholders like:<br>
+           <b>{{name}}</b> and <b>{{rank}}</b> in the exact spot.</p>
+
+        <p>2️⃣ Prepare an Excel file (.xlsx) with EXACT column names:<br>
+           <b>name</b> | <b>rank</b></p>
+
+        <p>3️⃣ Upload both files.</p>
+        <p>4️⃣ Click <b>Generate Certificates</b>.</p>
+        <p>5️⃣ It will automatically download one certificate per student.</p>
+
+        <hr>
+
+        <h3>✔ DOs</h3>
+        <ul>
+            <li>Use DOCX format only.</li>
+            <li>Use placeholders exactly: <b>{{name}}</b>, <b>{{rank}}</b>.</li>
+            <li>Excel column names must match placeholders.</li>
+            <li>Keep template simple (no text boxes/shapes).</li>
+        </ul>
+
+        <h3>❌ DON'Ts</h3>
+        <ul>
+            <li>Don't use images with text on top in Word.</li>
+            <li>Don't rename columns like "Name " or " full name".</li>
+            <li>Don’t use merged cells in Excel.</li>
+            <li>Don’t use .doc or .csv files.</li>
+        </ul>
+
+        <hr>
+
+        <h3>✔ Common Problems & Fixes</h3>
+        <ul>
+            <li><b>Missing name, skipping:</b> → Excel has blank cells.</li>
+            <li><b>TemplateError / Multi error:</b> → Wrong placeholder in DOCX.</li>
+            <li><b>Docxtemplater not available:</b> → Wrong script link.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- External JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
